@@ -1,0 +1,31 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Frontend
+lette-ai/frontend/node_modules/
+lette-ai/frontend/dist/
+lette-ai/frontend/dist-ssr/
+lette-ai/frontend/*.local
+lette-ai/frontend/.npm
+lette-ai/frontend/.eslintcache
+
+# Backend
+lette-ai/backend/__pycache__/
+lette-ai/backend/*.py[cod]
+lette-ai/backend/*$py.class
+lette-ai/backend/venv/
+lette-ai/backend/.venv/
+lette-ai/backend/.env
+lette-ai/backend/lette.db
+lette-ai/backend/lette.db-journal
+
+# Project Exports
+lette-ai/exports/*.xlsx
+lette-ai/exports/*.csv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
