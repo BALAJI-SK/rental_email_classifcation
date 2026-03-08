@@ -13,7 +13,7 @@ load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 
 logger = logging.getLogger(__name__)
 
-MODEL = os.getenv("ANALYSIS_MODEL", "gemini-2.0-flash")
+MODEL = os.getenv("ANALYSIS_MODEL", "gemini-3-flash-preview")
 BATCH_SIZE = int(os.getenv("ANALYSIS_BATCH_SIZE", "5"))
 
 _client: genai.Client | None = None
@@ -164,7 +164,7 @@ async def _call_gemini_real(system: str, user: str, max_retries: int = 3) -> dic
             logger.warning(f"API error (attempt {attempt + 1}): {e}")
             if attempt < max_retries - 1:
                 await asyncio.sleep(delay)
-                delay *= 2
+                delay *= 6
 
     raise RuntimeError(f"Gemini API failed after {max_retries} attempts: {last_error}")
 
