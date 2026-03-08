@@ -281,6 +281,7 @@ async def analyse_thread(db, thread_id: str) -> dict:
             sentiment = ?,
             sentiment_trend = ?,
             risk_flags = ?,
+            status = 'draft_ready',
             analysed_at = ?
            WHERE id = ?""",
         (

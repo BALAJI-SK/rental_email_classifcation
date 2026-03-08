@@ -8,14 +8,14 @@ import ContactCard from './ContactCard'
 import * as api from '../api'
 
 export default function ThreadDetail({ thread, onClose, onUpdate }) {
-    const [draft, setDraft] = useState(thread.ai_draft || '')
+    const [draft, setDraft] = useState(thread.draft_response || '')
     const [status, setStatus] = useState(thread.status || 'open')
     const [isAnalysing, setIsAnalysing] = useState(false)
 
     useEffect(() => {
-        setDraft(thread.ai_draft || '')
+        setDraft(thread.draft_response || '')
         setStatus(thread.status || 'open')
-    }, [thread])
+    }, [thread.id, thread.draft_response, thread.status])
 
     const handleStatusChange = async (newStatus) => {
         setStatus(newStatus)
@@ -108,7 +108,7 @@ export default function ThreadDetail({ thread, onClose, onUpdate }) {
                         <span>✨</span> AI Analysis
                     </div>
 
-                    {thread.is_analysed ? (
+                    {thread.analysed_at ? (
                         <>
                             <p className="text-sm text-slate-700 leading-relaxed mb-4">{thread.ai_summary}</p>
 
@@ -136,7 +136,7 @@ export default function ThreadDetail({ thread, onClose, onUpdate }) {
                             )}
 
                             <footer className="text-[10px] text-slate-400 font-medium">
-                                Analysed {thread.analysed_at_relative} ago
+                                Analysed {thread.analysed_at} ago
                             </footer>
                         </>
                     ) : (
@@ -240,7 +240,7 @@ export default function ThreadDetail({ thread, onClose, onUpdate }) {
                             📋
                         </button>
                         <button
-                            onClick={() => setDraft(thread.ai_draft || '')}
+                            onClick={() => setDraft(thread.draft_response || '')}
                             className="px-4 h-11 bg-slate-800 hover:bg-slate-700 rounded-xl font-bold text-xs transition-colors"
                             title="Regenerate"
                         >
